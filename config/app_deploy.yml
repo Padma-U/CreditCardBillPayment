@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: server
+  template:
+    metadata:
+      labels:
+        app:  server
+    spec:
+      containers:
+      - name:  server
+        image:  padma0/creditcard
+        ports:
+        - containerPort: 8086
+        env:
+          - name:  SPRING_DATASOURCE_USERNAME
+            value: scott
+          - name:  SPRING_DATASOURCE_PASSWORD
+            value: Password
+          - name: SPRING_DATASOURCE_URL
+            value: jdbc:postgresql://10.111.116.122:5432/card_database
